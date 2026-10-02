@@ -19,7 +19,7 @@ The company site for Pigrosoft. Plain HTML and CSS, no build step, hosted on Git
 
 ## Changing things
 
-Edit the HTML and push to `main`. The site updates about a minute later.
+Edit the HTML, push to `main`, then copy `main` onto the branch the live site is built from with `git push origin main:gh-pages`. The site updates about a minute later.
 
 To add a tool, copy one `<li>` in the Tools window in `index.html` and change the name, the sentence and the link.
 
@@ -27,9 +27,9 @@ To change the pig, edit the shapes in `tools/make_logo.py` and run `python3 tool
 
 ## Hosting
 
-GitHub Pages serves the `main` branch from the root folder. In the repository settings, under Pages, the source is "Deploy from a branch", `main`, `/ (root)`, and the custom domain is `pigrosoft.com` with "Enforce HTTPS" ticked.
+GitHub Pages serves the `gh-pages` branch from the root folder, and `main` is the working copy. To publish straight from `main` and drop the extra branch, open the repository settings, go to Pages, and set the source to "Deploy from a branch", `main`, `/ (root)`. The custom domain is `pigrosoft.com`, set by the `CNAME` file. Once DNS points here, tick "Enforce HTTPS" on the same settings page.
 
-DNS at the registrar:
+DNS at the registrar (Porkbun):
 
 | Type | Name | Value |
 | --- | --- | --- |
