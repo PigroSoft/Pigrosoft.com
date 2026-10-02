@@ -141,6 +141,110 @@ for ex in (9, 20):
             awake[y][x] = "K"
     awake[13][ex] = "W"
 
+# ---------- the animated logo ----------
+# A 40x40 canvas: the pig sits low and left so the Zs have room top right.
+# Sixteen frames of a quarter second each make one four second loop.
+C, OX, OY = 40, 2, 8
+PAL["M"] = "#5A1F3A"
+
+squash = [row[:] for row in grid]  # breathing out: the top half sinks one pixel
+for y in range(16, 0, -1):
+    squash[y] = grid[y - 1][:]
+squash[0] = ["."] * N
+
+twitch = [row[:] for row in grid]  # the right ear flicks
+for y in (3, 4):
+    for x in range(N - 1, 21, -1):
+        twitch[y][x] = grid[y][x - 1]
+    twitch[y][22] = "."
+twitch[4][22] = "K"
+
+ZS = {
+    "z1": (30, 9, ["MMM", ".M.", "MMM"]),
+    "z2": (33, 5, ["MMMM", "..M.", ".M..", "MMMM"]),
+    "z3": (35, 0, ["MMMMM", "...M.", "..M..", ".M...", "MMMMM"]),
+}
+#            frame: 0123456789ABCDEF
+TIMELINE = {
+    "base":   "1111000011100000",
+    "squash": "0000111100001111",
+    "twitch": "0000000000010000",
+    "z1":     "0111111000000000",
+    "z2":     "0000111111000000",
+    "z3":     "0000000111111000",
+}
+POSES = {"base": grid, "squash": squash, "twitch": twitch}
+
+
+def on_canvas(pose, zs=()):
+    g = [["."] * C for _ in range(C)]
+    for y in range(N):
+        for x in range(N):
+            g[y + OY][x + OX] = pose[y][x]
+    for name in zs:
+        zx, zy, art = ZS[name]
+        for dy, row in enumerate(art):
+            for dx, ch in enumerate(row):
+                if ch != ".":
+                    g[zy + dy][zx + dx] = ch
+    return g
+
+
+def animated_svg():
+    css = [".f{visibility:hidden;animation:4s step-end infinite}"]
+    for name, track in TIMELINE.items():
+        stops = "".join(
+            f"{i * 6.25:g}%{{visibility:{'visible' if v == '1' else 'hidden'}}}" for i, v in enumerate(track)
+        )
+        css.append(f"#{name}{{animation-name:{name}}}@keyframes {name}{{{stops}}}")
+    css.append(
+        "@media (prefers-reduced-motion:reduce){.f{animation:none}#base,#z1,#z2,#z3{visibility:visible}}"
+    )
+    body = f"<style>{''.join(css)}</style>"
+    for name, pose in POSES.items():
+        body += f'<g class="f" id="{name}">{rects(pose, OX, OY)}</g>'
+    for name, (zx, zy, art) in ZS.items():
+        body += f'<g class="f" id="{name}">{rects([list(r) for r in art], zx, zy)}</g>'
+    return svg(body, C, C, "Pigrosoft pig, snoozing")
+
+
+def frames():
+    for i in range(16):
+        pose = next(POSES[n] for n in POSES if TIMELINE[n][i] == "1")
+        yield on_canvas(pose, [z for z in ZS if TIMELINE[z][i] == "1"])
+
+
+def gif(path, scale, bg=None):
+    keys = list(PAL)
+    flat = [0, 0, 0] if bg is None else [int(bg[i : i + 2], 16) for i in (1, 3, 5)]
+    for k in keys:
+        flat += [int(PAL[k][i : i + 2], 16) for i in (1, 3, 5)]
+    ims = []
+    for g in frames():
+        im = Image.new("P", (C, C), 0)
+        im.putpalette(flat + [0] * (768 - len(flat)))
+        for y in range(C):
+            for x in range(C):
+                if g[y][x] != ".":
+                    im.putpixel((x, y), keys.index(g[y][x]) + 1)
+        ims.append(im.resize((C * scale, C * scale), Image.NEAREST))
+    extra = {"transparency": 0, "disposal": 2} if bg is None else {}
+    ims[0].save(path, save_all=True, append_images=ims[1:], duration=250, loop=0, **extra)
+
+
+def profile(path, size=1024, bg="#F3A9C1"):
+    """A square picture for round avatar crops: the pig centred with room to spare."""
+    xs = [x for row in grid for x, c in enumerate(row) if c != "."]
+    ys = [y for y, row in enumerate(grid) if any(c != "." for c in row)]
+    scale = int(size * 0.8) // N
+    im = Image.new("RGBA", (size, size), bg)
+    pig = png(grid, scale)
+    cx = (min(xs) + max(xs) + 1) * scale // 2
+    cy = (min(ys) + max(ys) + 1) * scale // 2
+    im.alpha_composite(pig, (size // 2 - cx, size // 2 - cy))
+    im.convert("RGB").save(path)
+
+
 PAL.update({"Y": "#F2C230", "B": "#8B5A2B", "G": "#2E9E4F", "R": "#D93025", "A": "#F2A93B", "E": "#BDB6A4"})
 
 ICONS = {
@@ -190,7 +294,11 @@ def parse(art):
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     (OUT / "pig.svg").write_text(svg(rects(grid), N, N, "Pigrosoft pig, asleep"))
-    (OUT / "pig-awake.svg").write_text(svg(rects(awake), N, N, "Pigrosoft pig, awake"))
+    (OUT / "pig-awake.svg").write_text(svg(rects(awake, OX, OY), C, C, "Pigrosoft pig, awake"))
+    (OUT / "pig-animated.svg").write_text(animated_svg())
+    gif(OUT / "pig-animated.gif", 8)
+    profile(OUT / "pig-profile-pink.png")
+    profile(OUT / "pig-profile-mulberry.png", bg="#5A1F3A")
     for name, art in ICONS.items():
         (OUT / f"{name}.svg").write_text(svg(rects(parse(art)), 16, 16, name))
     png(grid, 16).save(OUT / "pig-512.png")

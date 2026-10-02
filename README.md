@@ -11,6 +11,8 @@ The company site for Pigrosoft. Plain HTML and CSS, no build step, hosted on Git
 | `404.html` | The page GitHub Pages shows for a missing URL |
 | `assets/style.css` | All the styling, with the colours named at the top |
 | `assets/pig.svg`, `assets/pig-awake.svg` | The logo, asleep and awake |
+| `assets/pig-animated.svg`, `assets/pig-animated.gif` | The snoozing loop: breathing, Zs and an ear flick |
+| `assets/pig-profile-pink.png`, `assets/pig-profile-mulberry.png` | Square pictures for round avatars |
 | `assets/logo.png`, `assets/og.png` | Pig plus wordmark, and the link preview image |
 | `tools/make_logo.py` | Draws the pig and the tool icons on a pixel grid |
 | `CNAME` | Tells GitHub Pages the site answers to pigrosoft.com |
