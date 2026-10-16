@@ -10,6 +10,7 @@ The company site for Pigrosoft. Plain HTML and CSS, no build step, hosted on Git
 | `impressum.html`, `datenschutz.html` | Legal notice and privacy page, English and German |
 | `404.html` | The page GitHub Pages shows for a missing URL |
 | `assets/style.css` | All the styling, with the colours named at the top |
+| `assets/pigrun.js` | PIGRUN.EXE, the runner game under the welcome window. It plays itself until someone clicks, and stores nothing |
 | `assets/pig.svg`, `assets/pig-awake.svg` | The logo, asleep and awake |
 | `assets/pig-animated.svg`, `assets/pig-animated.gif` | The snoozing loop: breathing, Zs and an ear flick |
 | `assets/pig-profile-pink.png`, `assets/pig-profile-mulberry.png` | Square pictures for round avatars |

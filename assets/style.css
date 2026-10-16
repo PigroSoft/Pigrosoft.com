@@ -326,6 +326,28 @@ p:last-child {
   display: block;
 }
 
+/* ---------- game ---------- */
+
+.game {
+  padding: 12px;
+}
+.game canvas {
+  display: block;
+  max-width: 100%;
+  image-rendering: pixelated;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.game canvas:focus-visible {
+  outline: 2px dotted var(--ink);
+  outline-offset: 3px;
+}
+.game-help {
+  margin: 10px 0 0;
+  font-size: 0.8125rem;
+  color: #4a4438;
+}
+
 /* ---------- tools ---------- */
 
 .tools {
