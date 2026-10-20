@@ -4,6 +4,7 @@
 Run from the repo root:  python3 tools/make_logo.py
 Needs Pillow (pip install pillow). Edit the shapes below, rerun, commit the output.
 """
+import math
 from pathlib import Path
 from PIL import Image
 
@@ -291,6 +292,15 @@ def parse(art):
     return g
 
 
+def eu_badge(path):
+    """A 24x16 pixel flag for the 'Made in the EU' badge: twelve stars in a ring on blue."""
+    W, H = 24, 16
+    cells = {(round(11.5 + 5.2 * math.sin(math.radians(a * 30))), round(7.5 - 5.2 * math.cos(math.radians(a * 30)))) for a in range(12)}
+    body = f'<rect width="{W}" height="{H}" fill="#003399"/>'
+    body += "".join(f'<rect x="{x}" y="{y}" width="1" height="1" fill="#FFCC00"/>' for x, y in sorted(cells))
+    path.write_text(svg(body, W, H, "Flag of the European Union"))
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     (OUT / "pig.svg").write_text(svg(rects(grid), N, N, "Pigrosoft pig, asleep"))
@@ -301,6 +311,7 @@ if __name__ == "__main__":
     profile(OUT / "pig-profile-mulberry.png", bg="#5A1F3A")
     for name, art in ICONS.items():
         (OUT / f"{name}.svg").write_text(svg(rects(parse(art)), 16, 16, name))
+    eu_badge(OUT / "badge-eu.svg")
     png(grid, 16).save(OUT / "pig-512.png")
     png(grid, 6).resize((180, 180), Image.NEAREST).save(OUT / "apple-touch-icon.png")
     png(grid, 1).save(OUT.parent / "favicon.ico", sizes=[(32, 32)])

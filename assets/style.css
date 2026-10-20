@@ -286,6 +286,27 @@ p:last-child {
   max-width: 46ch;
 }
 
+.made {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1.4em;
+  padding: 4px 12px 4px 6px;
+  background: var(--putty);
+  border: 2px solid var(--ink);
+  box-shadow: var(--sunken);
+  font-family: var(--pixel);
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.made img {
+  display: block;
+  width: 36px;
+  height: 24px;
+  border: 1px solid var(--ink);
+}
+
 .pig {
   position: relative;
   width: 240px;
