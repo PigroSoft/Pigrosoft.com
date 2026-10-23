@@ -10,6 +10,7 @@ from PIL import Image
 
 N = 32
 OUT = Path(__file__).resolve().parent.parent / "assets"
+BRAND = OUT.parent / "brand" / "pigrosoft"  # the supplied brand kit files live here; see the note in main
 
 PAL = {
     "K": "#000000",  # outline
@@ -305,10 +306,8 @@ if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     (OUT / "pig.svg").write_text(svg(rects(grid), N, N, "Pigrosoft pig, asleep"))
     (OUT / "pig-awake.svg").write_text(svg(rects(awake, OX, OY), C, C, "Pigrosoft pig, awake"))
-    (OUT / "pig-animated.svg").write_text(animated_svg())
-    gif(OUT / "pig-animated.gif", 8)
-    profile(OUT / "pig-profile-pink.png")
-    profile(OUT / "pig-profile-mulberry.png", bg="#5A1F3A")
+    # brand/pigrosoft/ holds the approved pig PNGs and GIF from the brand kit. They are the
+    # original files, so this script no longer rewrites them.
     for name, art in ICONS.items():
         (OUT / f"{name}.svg").write_text(svg(rects(parse(art)), 16, 16, name))
     eu_badge(OUT / "badge-eu.svg")

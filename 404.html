@@ -7,38 +7,43 @@
   <meta name="robots" content="noindex">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/assets/pig.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#f8f2e5">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
   <header class="menubar">
-    <a class="brand" href="/">
-      <img src="/assets/pig.svg" alt="" width="32" height="32">
-      Pigrosoft
-    </a>
-    <nav aria-label="Main">
-      <a href="/#tools">Tools</a>
-      <a href="/#company">Company</a>
-      <a href="/#help">Help</a>
-      <a href="/#contact">Contact</a>
-    </nav>
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src="/brand/pigrosoft/wordmark-ink.svg" width="244" height="72" alt="Pigrosoft">
+      </a>
+      <nav aria-label="Main">
+        <a href="/#tools">Tools</a>
+        <a href="/#company">Company</a>
+        <a href="/#help">Help</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="desk">
-    <section class="win">
-      <div class="titlebar" aria-hidden="true">Error 404</div>
-      <div class="pane doc lost">
-        <img src="/assets/pig.svg" alt="" width="160" height="160">
-        <h1>This page is asleep.</h1>
-        <p>Or it never existed. Either way there is nothing here, so head back to the front page.</p>
-        <div class="actions"><a class="btn primary" href="/">Go to the front page</a></div>
-      </div>
-    </section>
+  <main id="main">
+    <div class="doc lost">
+      <picture>
+        <source media="(prefers-reduced-motion: reduce)" srcset="/brand/pigrosoft/pig-profile-pink.png">
+        <img src="/brand/pigrosoft/pig-animated.gif" alt="" width="320" height="320">
+      </picture>
+      <h1>This page is asleep.</h1>
+      <p>Or it never existed. Either way there is nothing here, so head back to the front page.</p>
+      <div class="actions"><a class="btn primary" href="/">Go to the front page</a></div>
+    </div>
   </main>
 
-  <footer class="statusbar">
-    <span>&copy; 2026 Pigrosoft, Berlin</span>
-    <a href="/impressum.html">Legal notice (Impressum)</a>
-    <a href="/datenschutz.html">Privacy (Datenschutz)</a>
+  <footer class="foot">
+    <div class="wrap">
+      <img src="/brand/pigrosoft/wordmark-paper.svg" width="244" height="72" alt="Pigrosoft">
+      <span>&copy; 2026 Pigrosoft, Berlin</span>
+      <a href="/impressum.html">Legal notice (Impressum)</a>
+      <a href="/datenschutz.html">Privacy (Datenschutz)</a>
+    </div>
   </footer>
 </body>
 </html>

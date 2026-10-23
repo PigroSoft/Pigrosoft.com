@@ -13,54 +13,62 @@
   <meta property="og:description" content="Small applications, made with care.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pigrosoft.com/">
-  <meta property="og:image" content="https://pigrosoft.com/assets/og.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f3a9c1">
-  <link rel="preload" href="assets/pixelify-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <meta property="og:site_name" content="Pigrosoft">
+  <meta property="og:image" content="https://pigrosoft.com/brand/pigrosoft/pig-profile-mulberry.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Pigrosoft's original pixel pig on mulberry.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://pigrosoft.com/brand/pigrosoft/pig-profile-mulberry.png">
+  <meta name="twitter:image:alt" content="Pigrosoft's original pixel pig on mulberry.">
+  <meta name="theme-color" content="#f8f2e5">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="menubar">
-    <a class="brand" href="./">
-      <img src="assets/pig.svg" alt="" width="32" height="32">
-      Pigrosoft
-    </a>
-    <nav aria-label="Main">
-      <a href="#tools">Tools</a>
-      <a href="#company">Company</a>
-      <a href="#help">Help</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="wrap">
+      <a class="brand" href="./">
+        <img src="brand/pigrosoft/wordmark-ink.svg" width="244" height="72" alt="Pigrosoft">
+      </a>
+      <nav aria-label="Main">
+        <a href="#tools">Tools</a>
+        <a href="#company">Company</a>
+        <a href="#help">Help</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="main" class="desk">
+  <main id="main">
 
-    <section class="win" aria-labelledby="welcome-title">
-      <div class="titlebar" aria-hidden="true">Welcome to Pigrosoft</div>
-      <div class="pane welcome">
-        <button class="pig" type="button" id="pig" aria-label="Wake the pig">
-          <img class="asleep" src="assets/pig-animated.svg" alt="" width="240" height="240">
-          <img class="awake" src="assets/pig-awake.svg" alt="" width="240" height="240">
-          <span class="oink" aria-hidden="true">Oink?</span>
-        </button>
-        <div>
-          <h1 id="welcome-title">Effortless on purpose.</h1>
-          <p class="motto">Small applications, made with care.</p>
-          <div class="actions">
-            <a class="btn primary" href="#tools">See the tools</a>
-            <a class="btn" href="#company">Read me</a>
-          </div>
-          <div class="made"><img src="assets/badge-eu.svg" alt="" width="24" height="16"><span>Made in the EU</span></div>
+    <section class="wrap hero" aria-labelledby="welcome-title">
+      <div>
+        <h1 id="welcome-title">Effortless on purpose.</h1>
+        <p class="lede">Small applications, made with care.</p>
+        <div class="actions">
+          <a class="btn primary" href="#tools">See the tools</a>
+          <a class="btn" href="#company">Read me</a>
         </div>
+        <p class="made"><img src="assets/badge-eu.svg" alt="" width="24" height="16"><span>Made in the EU</span></p>
       </div>
+      <button class="pig" type="button" id="pig" aria-label="Wake the pig">
+        <picture class="asleep">
+          <source media="(prefers-reduced-motion: reduce)" srcset="brand/pigrosoft/pig-profile-pink.png">
+          <img src="brand/pigrosoft/pig-animated.gif" alt="" width="320" height="320">
+        </picture>
+        <img class="awake" src="assets/pig-awake.svg" alt="" width="240" height="240">
+        <span class="oink" aria-hidden="true">Oink?</span>
+      </button>
     </section>
 
-    <section class="win" id="tools" aria-labelledby="tools-title">
-      <h2 class="titlebar" id="tools-title">Tools</h2>
-      <div class="pane">
-        <ul class="tools">
+    <div class="wrap">
+
+      <section class="block" id="tools" aria-labelledby="tools-title">
+        <h2 id="tools-title">Tools</h2>
+        <div>
+          <ul class="tools">
           <li>
             <img src="assets/icon-lingo.svg" alt="" width="64" height="64">
             <div>
@@ -86,14 +94,12 @@
             <a class="btn" href="#contact">Suggest a tool</a>
           </li>
         </ul>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <div class="pair" id="company">
-      <section class="win" aria-labelledby="company-title">
-        <div class="titlebar" aria-hidden="true">README.TXT</div>
-        <div class="pane">
-          <h2 id="company-title">The company</h2>
+      <section class="block" id="company" aria-labelledby="company-title">
+        <h2 id="company-title">The company</h2>
+        <div>
           <p>Pigrosoft is a small software company in Berlin. We make the tools we wanted for ourselves, and we fuss over the details so that using them takes no effort at all.</p>
           <p>Every tool follows the same house rules.</p>
           <ul class="rules">
@@ -106,80 +112,81 @@
         </div>
       </section>
 
-      <section class="win" aria-labelledby="specs-title">
-        <div class="titlebar" aria-hidden="true">System requirements</div>
-        <div class="pane">
-          <h2 id="specs-title">You will need</h2>
-          <dl class="specs">
-            <dt>Computer</dt><dd>Any</dd>
-            <dt>Software</dt><dd>A web browser</dd>
-            <dt>Disk space</dt><dd>0 MB</dd>
-            <dt>Floppy drive</dt><dd>Not required</dd>
-            <dt>Account</dt><dd>None</dd>
-            <dt>Manual</dt><dd>Not needed</dd>
-          </dl>
+      <section class="block" aria-labelledby="specs-title">
+        <h2 id="specs-title">You will need</h2>
+        <dl class="specs">
+          <dt>Computer</dt><dd>Any</dd>
+          <dt>Software</dt><dd>A web browser</dd>
+          <dt>Disk space</dt><dd>0 MB</dd>
+          <dt>Floppy drive</dt><dd>Not required</dd>
+          <dt>Account</dt><dd>None</dd>
+          <dt>Manual</dt><dd>Not needed</dd>
+        </dl>
+      </section>
+
+      <section class="block" aria-labelledby="game-title">
+        <h2 id="game-title">PIGRUN.EXE</h2>
+        <div class="game">
+          <canvas id="pigrun" tabindex="0" aria-describedby="game-help">A small running game with the Pigrosoft pig.</canvas>
+          <p id="game-help" class="game-help">The pig runs by itself. Click or tap the game to take over, then press Space or tap to jump the alarm clocks and paperwork.</p>
         </div>
       </section>
-    </div>
 
-    <section class="win" aria-labelledby="game-title">
-      <h2 class="titlebar" id="game-title">PIGRUN.EXE</h2>
-      <div class="pane game">
-        <canvas id="pigrun" tabindex="0" aria-describedby="game-help">A small running game with the Pigrosoft pig.</canvas>
-        <p id="game-help" class="game-help">The pig runs by itself. Click or tap the game to take over, then press Space or tap to jump the alarm clocks and paperwork.</p>
-      </div>
-    </section>
-
-    <section class="win" id="help" aria-labelledby="help-title">
-      <h2 class="titlebar" id="help-title">Help</h2>
-      <div class="pane">
-        <details>
-          <summary>Something is broken. What do I do?</summary>
-          <p>Email <a href="mailto:support@pigrosoft.com">support@pigrosoft.com</a> and say which tool you were using, what you were doing, and which browser you were in. A screenshot helps a lot.</p>
-        </details>
-        <details>
-          <summary>I paid for something and lost my license key.</summary>
-          <p>Search your inbox for the receipt from Dodo Payments, our payment provider, because the key is in that email. If it is gone, write to us from the address you paid with and we will sort it out.</p>
-        </details>
-        <details>
-          <summary>Can I get a refund?</summary>
-          <p>Each tool lists its own terms. For Workshop Timers, see the <a href="https://workshoptimers.com/widerruf.html">refund page</a>.</p>
-        </details>
-        <details>
-          <summary>Do you track me?</summary>
-          <p>No. This site sets no cookies and runs no analytics. It is hosted on GitHub Pages, which logs IP addresses the way any web host does. The <a href="datenschutz.html">privacy page</a> has the details.</p>
-        </details>
-        <details>
-          <summary>Who started Pigrosoft?</summary>
-          <p>Jeff Humble, a designer, founder and educator who makes little games and apps with his son, Charlie. You can find the rest of his work at <a href="https://www.jeffreyhumble.com/">jeffreyhumble.com</a>.</p>
-        </details>
-        <details>
-          <summary>Where in the EU are you?</summary>
-          <p>Berlin is home, for an American who has lived here for years. The founder also spends a good part of the year in Sicily, so a fair share of the tools were finished with a granita within reach.</p>
-        </details>
-        <details>
-          <summary>Why a pig?</summary>
-          <p>Pigro is Italian for lazy. We do the careful work so that you get to be the lazy one. The pig is a bonus, and it wakes up if you click it.</p>
-        </details>
-      </div>
-    </section>
-
-    <section class="win" id="contact" aria-labelledby="contact-title">
-      <h2 class="titlebar" id="contact-title">Contact</h2>
-      <div class="pane">
-        <p>Bug reports, tool ideas and complaints about the pig all go to the same inbox: <a href="mailto:support@pigrosoft.com">support@pigrosoft.com</a></p>
-        <div class="actions">
-          <a class="btn primary" href="mailto:support@pigrosoft.com">Send an email</a>
+      <section class="block" id="help" aria-labelledby="help-title">
+        <h2 id="help-title">Help</h2>
+        <div>
+      <details>
+        <summary>Something is broken. What do I do?</summary>
+        <p>Email <a href="mailto:support@pigrosoft.com">support@pigrosoft.com</a> and say which tool you were using, what you were doing, and which browser you were in. A screenshot helps a lot.</p>
+      </details>
+      <details>
+        <summary>I paid for something and lost my license key.</summary>
+        <p>Search your inbox for the receipt from Dodo Payments, our payment provider, because the key is in that email. If it is gone, write to us from the address you paid with and we will sort it out.</p>
+      </details>
+      <details>
+        <summary>Can I get a refund?</summary>
+        <p>Each tool lists its own terms. For Workshop Timers, see the <a href="https://workshoptimers.com/widerruf.html">refund page</a>.</p>
+      </details>
+      <details>
+        <summary>Do you track me?</summary>
+        <p>No. This site sets no cookies and runs no analytics. It is hosted on GitHub Pages, which logs IP addresses the way any web host does. The <a href="datenschutz.html">privacy page</a> has the details.</p>
+      </details>
+      <details>
+        <summary>Who started Pigrosoft?</summary>
+        <p>Jeff Humble, a designer, founder and educator who makes little games and apps with his son, Charlie. You can find the rest of his work at <a href="https://www.jeffreyhumble.com/">jeffreyhumble.com</a>.</p>
+      </details>
+      <details>
+        <summary>Where in the EU are you?</summary>
+        <p>Berlin is home, for an American who has lived here for years. The founder also spends a good part of the year in Sicily, so a fair share of the tools were finished with a granita within reach.</p>
+      </details>
+      <details>
+        <summary>Why a pig?</summary>
+        <p>Pigro is Italian for lazy. We do the careful work so that you get to be the lazy one. The pig is a bonus, and it wakes up if you click it.</p>
+      </details>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="block" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact</h2>
+        <div>
+          <p>Bug reports, tool ideas and complaints about the pig all go to the same inbox: <a href="mailto:support@pigrosoft.com">support@pigrosoft.com</a></p>
+          <div class="actions">
+            <a class="btn primary" href="mailto:support@pigrosoft.com">Send an email</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
 
   </main>
 
-  <footer class="statusbar">
-    <span>&copy; 2026 Pigrosoft, Berlin</span>
-    <a href="impressum.html">Legal notice (Impressum)</a>
-    <a href="datenschutz.html">Privacy (Datenschutz)</a>
+  <footer class="foot">
+    <div class="wrap">
+      <img src="brand/pigrosoft/wordmark-paper.svg" width="244" height="72" alt="Pigrosoft">
+      <span>&copy; 2026 Pigrosoft, Berlin</span>
+      <a href="impressum.html">Legal notice (Impressum)</a>
+      <a href="datenschutz.html">Privacy (Datenschutz)</a>
+    </div>
   </footer>
 
   <script src="assets/pigrun.js" defer></script>

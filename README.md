@@ -9,12 +9,10 @@ The company site for Pigrosoft. Plain HTML and CSS, no build step, hosted on Git
 | `index.html` | The whole home page: welcome, tools, company, help, contact |
 | `impressum.html`, `datenschutz.html` | Legal notice and privacy page, English and German |
 | `404.html` | The page GitHub Pages shows for a missing URL |
-| `assets/style.css` | All the styling, with the colours named at the top |
+| `assets/style.css` | All the styling, with the colours named at the top (paper, ink, rose, burgundy) |
 | `assets/pigrun.js` | PIGRUN.EXE, the runner game under the welcome window. It plays itself until someone clicks, and stores nothing |
-| `assets/pig.svg`, `assets/pig-awake.svg` | The logo, asleep and awake |
-| `assets/pig-animated.svg`, `assets/pig-animated.gif` | The snoozing loop: breathing, Zs and an ear flick |
-| `assets/pig-profile-pink.png`, `assets/pig-profile-mulberry.png` | Square pictures for round avatars |
-| `assets/logo.png`, `assets/og.png` | Pig plus wordmark, and the link preview image |
+| `brand/pigrosoft/` | The brand kit files, never edited: wordmarks (ink, paper, accent), the animated pig GIF and the two profile pictures |
+| `assets/pig.svg`, `assets/pig-awake.svg` | The small pig used for the favicon, and the awake pig for the click on the home page |
 | `tools/make_logo.py` | Draws the pig and the tool icons on a pixel grid |
 | `CNAME` | Tells GitHub Pages the site answers to pigrosoft.com |
 
@@ -42,4 +40,4 @@ DNS at the registrar (Porkbun):
 
 ## Credits
 
-Headings use [Pixelify Sans](https://github.com/eifetx/Pixelify-Sans) under the SIL Open Font License, served from this repo so the site makes no third-party requests.
+Pixelify Sans (SIL Open Font License) is served from this repo and used only for the lettering inside the PIGRUN.EXE game, so the site makes no third-party requests.

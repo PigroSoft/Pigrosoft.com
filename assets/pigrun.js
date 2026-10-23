@@ -15,7 +15,7 @@
     N: "#7A2848", E: "#000000", W: "#FFFFFF", R: "#D93025", G: "#BDB6A4",
     Y: "#F2C230", M: "#5A1F3A"
   };
-  var PAPER = "#FFFDF5", LINE = "#8E8776", CLOUD = "#EDE7D8";
+  var PAPER = "#f8f2e5", LINE = "#8E8776", CLOUD = "#e6dcc6";
 
   /* Sprites are drawn as filled shapes; the black outline is added here. */
   function sprite(rows) {
@@ -271,6 +271,6 @@
 
   reset();
   size();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  if (document.fonts && document.fonts.load) document.fonts.load('8px "Pixelify Sans"').then(draw, function () {});
   loop();
 })();
