@@ -1,7 +1,8 @@
 /* Pigrosoft.com
-   The House rules direction: paper, ink, thin rules, strong Helvetica and a lot of space.
+   Two directions combined: the pink desktop with putty windows, and the House rules type,
+   with Helvetica on cream paper and the outlined wordmark.
    The pig and the wordmark are fixed artwork in brand/pigrosoft/ and are never recoloured.
-   Pixelify Sans is kept only for the lettering inside the PIGRUN.EXE game. */
+   Pixelify Sans is used only for window title bars and the PIGRUN.EXE game. */
 
 @font-face {
   font-family: "Pixelify Sans";
@@ -15,11 +16,18 @@
   --rose: #f1b0c4;
   --paper: #f8f2e5;
   --accent: #76364f;       /* burgundy: buttons and secondary text */
-  --rule: rgb(53 28 42 / 20%);
-  --rule-light: rgb(248 242 229 / 30%);
+  --desk: #f3a9c1;         /* the pig's own pink, as a desktop */
+  --desk-dither: #ec98b4;
+  --putty: #ddd6c4;        /* window chrome */
+  --putty-light: #ffffff;
+  --putty-dark: #8e8776;
+  --mulberry: #5a1f3a;     /* title bars */
+  --snout: #d9668f;        /* window shadows */
+  --pixel: "Pixelify Sans", "Courier New", monospace;
+  --raised: inset -2px -2px 0 var(--putty-dark), inset 2px 2px 0 var(--putty-light);
+  --sunken: inset 2px 2px 0 var(--putty-dark), inset -2px -2px 0 var(--putty-light);
   --font: Helvetica, Arial, sans-serif;
   --tracking: -0.04em;
-  --content: 1120px;
 }
 
 *,
@@ -35,12 +43,17 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font: 400 16px/1.6 var(--font);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--desk);
+  background-image:
+    linear-gradient(45deg, var(--desk-dither) 25%, transparent 25%, transparent 75%, var(--desk-dither) 75%),
+    linear-gradient(45deg, var(--desk-dither) 25%, transparent 25%, transparent 75%, var(--desk-dither) 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  color: var(--ink);
+  font: 400 16px/1.6 var(--font);
 }
 main {
   flex: 1;
@@ -62,7 +75,7 @@ button:focus-visible,
 summary:focus-visible,
 canvas:focus-visible {
   outline: 3px solid var(--accent);
-  outline-offset: 4px;
+  outline-offset: 3px;
 }
 
 h1,
@@ -85,7 +98,7 @@ p:last-child {
 }
 
 .wrap {
-  width: min(var(--content), calc(100% - 48px));
+  width: min(920px, calc(100% - 32px));
   margin-inline: auto;
 }
 
@@ -101,21 +114,22 @@ p:last-child {
   padding: 6px 10px;
 }
 
-/* ---------- header ---------- */
+/* ---------- menu bar ---------- */
 
 .menubar {
   position: sticky;
   top: 0;
   z-index: 5;
-  background: var(--paper);
-  border-bottom: 1px solid var(--rule);
+  background: var(--putty);
+  border-bottom: 2px solid #000;
+  box-shadow: var(--raised);
 }
 .menubar .wrap {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 28px;
-  padding-block: 14px;
+  gap: 2px 20px;
+  padding-block: 8px;
 }
 .brand {
   display: inline-flex;
@@ -123,24 +137,86 @@ p:last-child {
 }
 .brand img {
   display: block;
-  width: 156px;
+  width: 150px;
   height: auto;
 }
 .menubar nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0 24px;
+  gap: 0 4px;
 }
 .menubar nav a {
-  padding: 6px 0;
+  padding: 6px 10px;
   color: var(--ink);
   font-size: 15px;
   text-decoration: none;
 }
 .menubar nav a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-decoration-color: var(--accent);
+  background: var(--mulberry);
+  color: #fff;
+}
+
+/* ---------- windows ---------- */
+
+.desk {
+  width: min(920px, calc(100% - 32px));
+  margin-inline: auto;
+  padding: 32px 0 56px;
+  display: grid;
+  gap: 32px;
+}
+.desk > div {
+  display: grid;
+  gap: 32px;
+}
+
+.win {
+  background: var(--putty);
+  border: 2px solid #000;
+  box-shadow: var(--raised), 8px 8px 0 var(--snout);
+  padding: 4px;
+  min-width: 0;
+}
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 3px 6px;
+  background: var(--mulberry);
+  color: #fff;
+  font-family: var(--pixel);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+.titlebar::before {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 14px;
+  background: var(--putty);
+  box-shadow: var(--raised);
+  border: 1px solid #000;
+}
+.pane {
+  margin-top: 4px;
+  padding: 28px;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: var(--putty-dark) var(--putty-light) var(--putty-light) var(--putty-dark);
+}
+.pane h2 {
+  margin-bottom: 14px;
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 32px;
+  align-items: start;
 }
 
 /* ---------- buttons ---------- */
@@ -151,8 +227,9 @@ p:last-child {
   justify-content: center;
   min-height: 44px;
   padding: 10px 18px;
-  border: 1px solid currentColor;
-  background: transparent;
+  border: 2px solid #000;
+  background: var(--putty);
+  box-shadow: var(--raised);
   color: var(--ink);
   font: 700 14px/1.4 var(--font);
   text-align: center;
@@ -160,44 +237,50 @@ p:last-child {
   cursor: pointer;
 }
 .btn:hover {
-  background: var(--rose);
-  border-color: var(--ink);
+  background: #e9e3d3;
   color: var(--ink);
+}
+.btn:active {
+  box-shadow: var(--sunken);
+  transform: translate(1px, 1px);
 }
 .btn.primary {
   background: var(--accent);
-  border-color: var(--accent);
+  box-shadow: inset -2px -2px 0 #4d1f31, inset 2px 2px 0 #a2607a;
   color: var(--paper);
 }
 .btn.primary:hover {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--mulberry);
   color: var(--paper);
+}
+.btn.primary:active {
+  box-shadow: inset 2px 2px 0 #4d1f31, inset -2px -2px 0 #a2607a;
 }
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 28px;
+  margin-top: 26px;
 }
 
-/* ---------- hero ---------- */
+/* ---------- welcome ---------- */
 
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px 64px;
+  gap: 24px 40px;
   align-items: center;
-  padding-block: 72px 80px;
+  padding: 40px 36px;
 }
 .hero h1 {
-  font-size: clamp(40px, 7vw, 80px);
+  font-size: clamp(40px, 7vw, 76px);
   line-height: 0.98;
+  color: var(--mulberry);
 }
 .hero .lede {
-  margin-top: 20px;
+  margin-top: 18px;
   color: var(--accent);
-  font-size: clamp(20px, 2.4vw, 26px);
+  font-size: clamp(20px, 2.4vw, 25px);
   line-height: 1.25;
   letter-spacing: -0.02em;
 }
@@ -205,14 +288,14 @@ p:last-child {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 24px;
   font-size: 14px;
 }
 .made img {
   display: block;
   width: 24px;
   height: 16px;
-  border: 1px solid var(--ink);
+  border: 1px solid #000;
 }
 
 .pig {
@@ -245,34 +328,13 @@ p:last-child {
   top: 14px;
   padding: 2px 10px;
   background: var(--paper);
-  border: 1px solid var(--ink);
+  border: 2px solid #000;
   color: var(--ink);
   font: 700 15px/1.4 var(--font);
   pointer-events: none;
 }
 .pig.is-awake .oink {
   display: block;
-}
-
-/* ---------- sections ---------- */
-
-.block {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-  gap: 20px 48px;
-  padding-block: 48px 56px;
-  border-top: 1px solid var(--rule);
-}
-.block > h2 {
-  font-size: clamp(28px, 4vw, 44px);
-}
-.block > h2 small {
-  display: block;
-  margin-bottom: 12px;
-  font: 700 12px/1.4 var(--font);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
 }
 
 /* ---------- tools ---------- */
@@ -285,10 +347,10 @@ p:last-child {
 .tools li {
   display: grid;
   grid-template-columns: 64px minmax(0, 1fr) auto;
-  gap: 8px 24px;
+  gap: 8px 22px;
   align-items: center;
-  padding: 28px 0;
-  border-top: 1px solid var(--rule);
+  padding: 22px 0;
+  border-top: 2px dotted var(--putty-dark);
 }
 .tools li:first-child {
   border-top: 0;
@@ -306,8 +368,8 @@ p:last-child {
 .tools .slot {
   display: grid;
   place-items: center;
-  border: 1px dashed var(--accent);
-  color: var(--accent);
+  border: 2px dashed var(--putty-dark);
+  color: var(--putty-dark);
   font: 700 28px/1 var(--font);
 }
 .tools h3 {
@@ -335,23 +397,22 @@ p:last-child {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.55em;
-  width: 8px;
-  height: 8px;
-  background: var(--rose);
-  border: 1px solid var(--ink);
+  top: 0.5em;
+  width: 10px;
+  height: 10px;
+  background: var(--snout);
+  border: 2px solid #000;
 }
 .specs {
   display: grid;
   grid-template-columns: max-content 1fr;
-  gap: 0 32px;
-  max-width: 520px;
+  gap: 0 24px;
 }
 .specs dt,
 .specs dd {
   margin: 0;
-  padding: 10px 0;
-  border-top: 1px solid var(--rule);
+  padding: 9px 0;
+  border-top: 2px dotted var(--putty-dark);
 }
 .specs dt:first-of-type,
 .specs dt:first-of-type + dd {
@@ -367,7 +428,8 @@ p:last-child {
   display: block;
   max-width: 100%;
   background: var(--paper);
-  border: 1px solid var(--ink);
+  border: 2px solid;
+  border-color: var(--putty-dark) var(--putty-light) var(--putty-light) var(--putty-dark);
   image-rendering: pixelated;
   cursor: pointer;
   touch-action: manipulation;
@@ -381,14 +443,14 @@ p:last-child {
 /* ---------- help ---------- */
 
 details {
-  border-top: 1px solid var(--rule);
+  border-top: 2px dotted var(--putty-dark);
 }
 details:first-of-type {
   border-top: 0;
 }
 summary {
   position: relative;
-  padding: 16px 40px 16px 0;
+  padding: 14px 40px 14px 0;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -402,7 +464,7 @@ summary::after {
   content: "+";
   position: absolute;
   right: 4px;
-  top: 12px;
+  top: 10px;
   color: var(--accent);
   font-size: 24px;
   font-weight: 400;
@@ -411,54 +473,44 @@ details[open] summary::after {
   content: "\2212";
 }
 details p {
-  padding: 0 0 18px;
+  padding: 0 0 16px;
 }
 
-/* ---------- footer ---------- */
+/* ---------- status bar ---------- */
 
-.foot {
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 14px;
+.statusbar {
+  background: var(--putty);
+  border-top: 2px solid #000;
+  box-shadow: var(--raised);
+  font-size: 13px;
 }
-.foot .wrap {
+.statusbar .wrap {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px 28px;
-  padding-block: 28px;
+  gap: 8px 24px;
+  padding-block: 10px;
 }
-.foot img {
+.statusbar img {
   display: block;
-  width: 156px;
+  width: 120px;
   height: auto;
   margin-right: auto;
 }
-.foot a,
-.foot a:visited {
-  color: var(--paper);
-}
-.foot a:hover {
-  color: var(--rose);
-}
-.foot a:focus-visible {
-  outline-color: var(--rose);
+.statusbar a,
+.statusbar a:visited {
+  color: var(--ink);
 }
 
 /* ---------- plain pages (legal, 404) ---------- */
 
-.doc {
-  width: min(760px, calc(100% - 48px));
-  margin-inline: auto;
-  padding-block: 56px 72px;
-}
 .doc h1 {
-  font-size: clamp(34px, 5vw, 52px);
+  font-size: clamp(34px, 5vw, 48px);
   margin-bottom: 0.5em;
 }
 .doc h2 {
   font-size: 22px;
-  margin: 1.8em 0 0.4em;
+  margin: 1.6em 0 0.4em;
 }
 .doc address {
   font-style: normal;
@@ -466,8 +518,8 @@ details p {
 }
 .doc hr {
   border: 0;
-  border-top: 1px solid var(--rule);
-  margin: 3em 0;
+  border-top: 2px dotted var(--putty-dark);
+  margin: 2.4em 0;
 }
 .lost {
   text-align: center;
@@ -486,25 +538,26 @@ details p {
 
 /* ---------- small screens ---------- */
 
-@media (max-width: 860px) {
-  .block {
+@media (max-width: 760px) {
+  .pair {
     grid-template-columns: minmax(0, 1fr);
-    padding-block: 36px 44px;
   }
   .hero {
     grid-template-columns: minmax(0, 1fr);
-    padding-block: 40px 56px;
+    padding: 28px 20px;
   }
   .hero .pig {
     order: -1;
   }
+  .pane {
+    padding: 20px;
+  }
+  .win {
+    box-shadow: var(--raised), 5px 5px 0 var(--snout);
+  }
 }
 
 @media (max-width: 560px) {
-  .wrap,
-  .doc {
-    width: calc(100% - 32px);
-  }
   .pig,
   .pig img {
     width: 160px;
@@ -521,10 +574,6 @@ details p {
   .tools .btn {
     grid-column: 1 / -1;
     justify-self: start;
-  }
-  .specs {
-    grid-template-columns: max-content 1fr;
-    gap: 0 20px;
   }
 }
 

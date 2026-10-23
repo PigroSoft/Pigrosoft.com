@@ -21,7 +21,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:image" content="https://pigrosoft.com/brand/pigrosoft/pig-profile-mulberry.png">
   <meta name="twitter:image:alt" content="Pigrosoft's original pixel pig on mulberry.">
-  <meta name="theme-color" content="#f8f2e5">
+  <meta name="theme-color" content="#f3a9c1">
+  <link rel="preload" href="assets/pixelify-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -41,9 +42,11 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" class="desk">
 
-    <section class="wrap hero" aria-labelledby="welcome-title">
+    <section class="win" aria-labelledby="welcome-title">
+      <div class="titlebar" aria-hidden="true">Welcome to Pigrosoft</div>
+      <div class="pane hero">
       <div>
         <h1 id="welcome-title">Effortless on purpose.</h1>
         <p class="lede">Small applications, made with care.</p>
@@ -61,12 +64,14 @@
         <img class="awake" src="assets/pig-awake.svg" alt="" width="240" height="240">
         <span class="oink" aria-hidden="true">Oink?</span>
       </button>
+      </div>
     </section>
 
-    <div class="wrap">
+    <div>
 
-      <section class="block" id="tools" aria-labelledby="tools-title">
-        <h2 id="tools-title">Tools</h2>
+      <section class="win" id="tools" aria-labelledby="tools-title">
+      <h2 class="titlebar" id="tools-title">Tools</h2>
+      <div class="pane">
         <div>
           <ul class="tools">
           <li>
@@ -95,11 +100,14 @@
           </li>
         </ul>
         </div>
+      </div>
       </section>
 
-      <section class="block" id="company" aria-labelledby="company-title">
-        <h2 id="company-title">The company</h2>
-        <div>
+      <div class="pair">
+      <section class="win" id="company" aria-labelledby="company-title">
+      <div class="titlebar" aria-hidden="true">README.TXT</div>
+      <div class="pane">
+        <h2 id="company-title">The company</h2>        <div>
           <p>Pigrosoft is a small software company in Berlin. We make the tools we wanted for ourselves, and we fuss over the details so that using them takes no effort at all.</p>
           <p>Every tool follows the same house rules.</p>
           <ul class="rules">
@@ -110,11 +118,13 @@
             <li>Pay once and keep it. No subscriptions.</li>
           </ul>
         </div>
+      </div>
       </section>
 
-      <section class="block" aria-labelledby="specs-title">
-        <h2 id="specs-title">You will need</h2>
-        <dl class="specs">
+      <section class="win" aria-labelledby="specs-title">
+      <div class="titlebar" aria-hidden="true">System requirements</div>
+      <div class="pane">
+        <h2 id="specs-title">You will need</h2>        <dl class="specs">
           <dt>Computer</dt><dd>Any</dd>
           <dt>Software</dt><dd>A web browser</dd>
           <dt>Disk space</dt><dd>0 MB</dd>
@@ -122,18 +132,23 @@
           <dt>Account</dt><dd>None</dd>
           <dt>Manual</dt><dd>Not needed</dd>
         </dl>
+      </div>
       </section>
+      </div>
 
-      <section class="block" aria-labelledby="game-title">
-        <h2 id="game-title">PIGRUN.EXE</h2>
+      <section class="win" aria-labelledby="game-title">
+      <h2 class="titlebar" id="game-title">PIGRUN.EXE</h2>
+      <div class="pane">
         <div class="game">
           <canvas id="pigrun" tabindex="0" aria-describedby="game-help">A small running game with the Pigrosoft pig.</canvas>
           <p id="game-help" class="game-help">The pig runs by itself. Click or tap the game to take over, then press Space or tap to jump the alarm clocks and paperwork.</p>
         </div>
+      </div>
       </section>
 
-      <section class="block" id="help" aria-labelledby="help-title">
-        <h2 id="help-title">Help</h2>
+      <section class="win" id="help" aria-labelledby="help-title">
+      <h2 class="titlebar" id="help-title">Help</h2>
+      <div class="pane">
         <div>
       <details>
         <summary>Something is broken. What do I do?</summary>
@@ -164,25 +179,28 @@
         <p>Pigro is Italian for lazy. We do the careful work so that you get to be the lazy one. The pig is a bonus, and it wakes up if you click it.</p>
       </details>
         </div>
+      </div>
       </section>
 
-      <section class="block" id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title">Contact</h2>
+      <section class="win" id="contact" aria-labelledby="contact-title">
+      <h2 class="titlebar" id="contact-title">Contact</h2>
+      <div class="pane">
         <div>
           <p>Bug reports, tool ideas and complaints about the pig all go to the same inbox: <a href="mailto:support@pigrosoft.com">support@pigrosoft.com</a></p>
           <div class="actions">
             <a class="btn primary" href="mailto:support@pigrosoft.com">Send an email</a>
           </div>
         </div>
+      </div>
       </section>
 
     </div>
 
   </main>
 
-  <footer class="foot">
+  <footer class="statusbar">
     <div class="wrap">
-      <img src="brand/pigrosoft/wordmark-paper.svg" width="244" height="72" alt="Pigrosoft">
+      <img src="brand/pigrosoft/wordmark-ink.svg" width="244" height="72" alt="Pigrosoft">
       <span>&copy; 2026 Pigrosoft, Berlin</span>
       <a href="impressum.html">Legal notice (Impressum)</a>
       <a href="datenschutz.html">Privacy (Datenschutz)</a>
