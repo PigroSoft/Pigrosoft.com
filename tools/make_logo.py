@@ -231,7 +231,9 @@ def gif(path, scale, bg=None):
                     im.putpixel((x, y), keys.index(g[y][x]) + 1)
         ims.append(im.resize((C * scale, C * scale), Image.NEAREST))
     extra = {"transparency": 0, "disposal": 2} if bg is None else {}
-    ims[0].save(path, save_all=True, append_images=ims[1:], duration=250, loop=0, **extra)
+    # optimize=False matters: Pillow's delta cropping drops the pig's left and bottom outline
+    # on frames that follow a disposal-2 frame.
+    ims[0].save(path, save_all=True, append_images=ims[1:], duration=250, loop=0, optimize=False, **extra)
 
 
 def profile(path, size=1024, bg="#F3A9C1"):
@@ -306,8 +308,10 @@ if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
     (OUT / "pig.svg").write_text(svg(rects(grid), N, N, "Pigrosoft pig, asleep"))
     (OUT / "pig-awake.svg").write_text(svg(rects(awake, OX, OY), C, C, "Pigrosoft pig, awake"))
-    # brand/pigrosoft/ holds the approved pig PNGs and GIF from the brand kit. They are the
-    # original files, so this script no longer rewrites them.
+    # brand/pigrosoft/ holds the approved pig PNGs from the brand kit, which this script no
+    # longer rewrites. The GIF is regenerated here because the kit copy had clipped frames.
+    BRAND.mkdir(parents=True, exist_ok=True)
+    gif(BRAND / "pig-animated.gif", 8)
     for name, art in ICONS.items():
         (OUT / f"{name}.svg").write_text(svg(rects(parse(art)), 16, 16, name))
     eu_badge(OUT / "badge-eu.svg")

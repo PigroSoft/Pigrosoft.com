@@ -11,7 +11,7 @@ The company site for Pigrosoft. Plain HTML and CSS, no build step, hosted on Git
 | `404.html` | The page GitHub Pages shows for a missing URL |
 | `assets/style.css` | All the styling, with the colours named at the top (paper, ink, rose, burgundy) |
 | `assets/pigrun.js` | PIGRUN.EXE, the runner game under the welcome window. It plays itself until someone clicks, and stores nothing |
-| `brand/pigrosoft/` | The brand kit files, never edited: wordmarks (ink, paper, accent), the animated pig GIF and the two profile pictures |
+| `brand/pigrosoft/` | The brand kit files: wordmarks (ink, paper, accent), the two profile pictures and the animated pig GIF. The GIF was regenerated from the pig grid because the kit copy lost the left and bottom outline on some frames |
 | `assets/pig.svg`, `assets/pig-awake.svg` | The small pig used for the favicon, and the awake pig for the click on the home page |
 | `tools/make_logo.py` | Draws the pig and the tool icons on a pixel grid |
 | `CNAME` | Tells GitHub Pages the site answers to pigrosoft.com |
